@@ -1,34 +1,53 @@
-# Tokyo 6 Days 5 Nights Trip Planner
+# 🇯🇵 Summer Trip 2026 | 日本盛夏二重奏 🌸
 
-A mobile-first itinerary application for a Tokyo trip, featuring a modern "Neon Tokyo" aesthetic.
+這是一個專為 2026 盛夏日本行（北海道自駕賞花 ➜ 東京都市攝影與親子遊）設計的**純手機版（Mobile-Only）**旅遊行程規劃網頁。
 
-> 📷 **[🇯🇵 東京行：X-M5 專屬底片配方全清單 (Tokyo Trip)](./Tokyo_Trip_Planner.md)** - 7 月東京行完整優化參數檢查表。
+> 📸 **[OPPO Find 9 Ultra 拍照實戰指南 (Hasselblad & Lens Guide)](./OPPO_Find_9_Ultra_Camera_Guide.md)** - 針對本趟旅行量身打造的哈蘇色彩與鏡頭參數備忘錄。
 
-## Tech Stack
-- React
-- Tailwind CSS
-- Lucide React Icons
-- Vite
+---
 
-## How to Run
+## ✈️ 行程概覽 (Trip Overview)
 
-1.  Install dependencies:
+本專案將兩段行程透過 7/13 的 **JL508** 航班進行完美銜接，整合成 12 天的親子旅遊手帖：
+1.  **Part 01 - 北海道自駕賞花手帖 (Day 1 - Day 7)**：新千歲機場入境 ➜ 札幌購物 ➜ 小樽運河 ➜ 旭山動物園 ➜ 美瑛四季彩之丘七彩花田 ➜ 富良野薰衣草 ➜ 登別地獄谷溫泉 ➜ 昭和新山熊牧場 ➜ 洞爺湖湖畔煙火 ➜ 國內線飛往東京。
+2.  **Part 02 - 東京都市攝影日記 (Day 7 - Day 12)**：羽田機場抵達 ➜ 虎之門艾迪遜酒店 ➜ 日本橋購物 ➜ 原宿潮流街拍 ➜ 澀谷宮下公園 ➜ 豐洲 KidZania 英文職業體驗日 ➜ 中目黑星巴克工坊 ➜ 芝公園東京鐵塔 ➜ 皇居晨跑 ➜ 上野動物園 ➜ 燒肉慶功宴 ➜ 成田機場 Skyliner 歸途。
+
+---
+
+## 🛠️ 技術棧 (Tech Stack)
+
+*   **前端框架**: React 19 + Vite
+*   **CSS 樣式**: Tailwind CSS v3 (包含自訂字體與動畫)
+*   **圖標庫**: Lucide React Icons
+*   **圖表套件**: Chart.js + React-Chartjs-2 (用於北海道雷達圖與花期預測)
+
+---
+
+## 🚀 如何在本地運行 (How to Run)
+
+1.  安裝依賴套件：
     ```bash
     npm install
     ```
 
-2.  Start the development server:
+2.  啟動本地開發伺服器：
     ```bash
     npm run dev
     ```
 
-3.  Build for production:
+3.  編譯並打包生產環境程式碼：
     ```bash
     npm run build
     ```
 
-## Features
--   **Mobile-First Design:** Optimized for phone screens with a bottom dock and touch-friendly controls.
--   **Horizontal Day Selector:** Swipeable day navigation.
--   **Visual Itinerary:** Timeline view with categorized coloring (Dining, Shopping, Stay, Activity).
--   **Responsive:** Works on desktop (centered mobile view) and mobile devices.
+> 💡 **提醒**：打開網頁（預設為 `http://localhost:5173`）後，請按 **F12** 開啟瀏覽器開發者工具，並切換至**手機模式模擬**進行瀏覽，以獲得最佳的行動端排版效果。
+
+---
+
+## ✨ 核心特色 (Core Features)
+
+*   **手機版優化**：全站頁面（首頁、北海道、東京）完全為直式螢幕優化，設有底部的置中浮動導覽欄。
+*   **OPPO 攝影貼士**：每個景點小卡皆標註了 OPPO Find 9 Ultra 哈蘇大師模式或 XPAN 電影模式的實用設定建議。
+*   **Google Maps 串接**：每個活動景點均設有 Google 地圖按鈕，點擊可直接外跳搜尋導航。
+*   **即時 API 串接**：首頁與分頁均會即時抓取札幌、東京的實時天氣，以及台幣/日幣的雙向匯率。
+*   **折疊式圖表**：將北海道的雷達分析圖與花期線形圖收納至「花況與平衡分析」摺疊板內，維持簡約美感。
