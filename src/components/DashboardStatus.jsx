@@ -8,43 +8,57 @@ export default function DashboardStatus({ mode = "dashboard" }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchJsonSafely = async (url) => {
             try {
-                // 1. 抓取東京天氣
-                const tokyoRes = await fetch(
-                    `https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&current=temperature_2m,weather_code&timezone=Asia%2FTokyo`
-                );
-                const tokyoData = await tokyoRes.json();
-
-                // 2. 抓取札幌天氣
-                const sapporoRes = await fetch(
-                    `https://api.open-meteo.com/v1/forecast?latitude=43.0642&longitude=141.3468&current=temperature_2m,weather_code&timezone=Asia%2FTokyo`
-                );
-                const sapporoData = await sapporoRes.json();
-
-                // 3. 抓取匯率 (以台幣為基準，獲取 TWD -> JPY 匯率)
-                const rateRes = await fetch('https://open.er-api.com/v6/latest/TWD');
-                const rateJson = await rateRes.json();
-
-                if (tokyoData && sapporoData && rateJson) {
-                    setWeatherTokyo({
-                        temp: Math.round(tokyoData.current.temperature_2m),
-                        code: tokyoData.current.weather_code
-                    });
-                    setWeatherSapporo({
-                        temp: Math.round(sapporoData.current.temperature_2m),
-                        code: sapporoData.current.weather_code
-                    });
-                    setRateData({
-                        jpyPerTwd: rateJson.rates.JPY.toFixed(2), // 1 TWD = 4.85 JPY
-                        twdPerJpy: (1 / rateJson.rates.JPY).toFixed(4), // 1 JPY = 0.2062 TWD
-                    });
-                }
-            } catch (error) {
-                console.error("無法取得即時天氣與匯率資料:", error);
-            } finally {
-                setLoading(false);
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return await response.json();
+            } catch (e) {
+                console.error(`無法取得 API 資料 (${url}):`, e);
+                return null;
             }
+        };
+
+        const fetchData = async () => {
+            // 同步併發抓取 3 個 API，大幅加快加載速度
+            const [tokyoData, sapporoData, rateJson] = await Promise.all([
+                fetchJsonSafely(`https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&current=temperature_2m,weather_code&timezone=Asia%2FTokyo`),
+                fetchJsonSafely(`https://api.open-meteo.com/v1/forecast?latitude=43.0642&longitude=141.3468&current=temperature_2m,weather_code&timezone=Asia%2FTokyo`),
+                fetchJsonSafely('https://open.er-api.com/v6/latest/TWD')
+            ]);
+
+            // 就算個別 API 失敗也能獨立顯示，避免被單一慢速 API 卡死
+            if (tokyoData && tokyoData.current) {
+                setWeatherTokyo({
+                    temp: Math.round(tokyoData.current.temperature_2m),
+                    code: tokyoData.current.weather_code
+                });
+            } else {
+                setWeatherTokyo({ temp: '--', code: 0 });
+            }
+
+            if (sapporoData && sapporoData.current) {
+                setWeatherSapporo({
+                    temp: Math.round(sapporoData.current.temperature_2m),
+                    code: sapporoData.current.weather_code
+                });
+            } else {
+                setWeatherSapporo({ temp: '--', code: 0 });
+            }
+
+            if (rateJson && rateJson.rates && rateJson.rates.JPY) {
+                setRateData({
+                    jpyPerTwd: rateJson.rates.JPY.toFixed(2),
+                    twdPerJpy: (1 / rateJson.rates.JPY).toFixed(4),
+                });
+            } else {
+                setRateData({
+                    jpyPerTwd: '--',
+                    twdPerJpy: '--',
+                });
+            }
+
+            setLoading(false);
         };
 
         fetchData();
