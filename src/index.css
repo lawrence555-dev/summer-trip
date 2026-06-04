@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;700;900&family=Outfit:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&family=Klee+One:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --wa-purple: #826a9d;
+  --wa-pink: #EC4899;
+  --wa-cyan: #06B6D4;
+  --wa-paper: #FDF2F8;
+  --wa-tape: #d1c1d7;
+  --wa-ink: #2d2a26;
+
+  /* Tokyo Variables */
+  --color-primary: #ec4899;
+  --color-secondary: #f472b6;
+  --color-cta: #06b6d4;
+  --color-background: #fdfdfd;
+  --color-text: #27272a;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.12);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+  font-family: 'Work Sans', 'Noto Sans TC', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* --- Hokkaido Scoped Theme --- */
+@keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.hokkaido-theme {
+  --tw-text-opacity: 1;
+  color: var(--wa-ink);
+  background: linear-gradient(-45deg, #FDF2F8, #fdf4f0, #e6f7ff, #f0fdf4);
+  background-size: 400% 400%;
+  animation: aurora 15s ease infinite;
+  min-height: 100vh;
+}
+
+.hokkaido-theme .font-handwriting {
+  font-family: 'Klee One', cursive;
+}
+
+.hokkaido-theme .font-serif-jp {
+  font-family: 'Libre Bodoni', 'Noto Serif JP', serif;
+}
+
+.hokkaido-theme .wa-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px 0 rgba(130, 106, 157, 0.06);
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 28px;
+}
+
+.hokkaido-theme .washi-tape {
+  position: absolute;
+  width: 110px;
+  height: 24px;
+  background: var(--wa-tape);
+  opacity: 0.45;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(1deg);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.03);
+  z-index: 20;
+}
+
+.hokkaido-theme .timeline-container {
+  position: relative;
+  padding-left: 28px;
+}
+
+.hokkaido-theme .timeline-line {
+  position: absolute;
+  left: 9px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--wa-tape) 10%, var(--wa-tape) 90%, transparent);
+  opacity: 0.5;
+}
+
+.hokkaido-theme .timeline-item {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.hokkaido-theme .timeline-dot {
+  position: absolute;
+  left: -24px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border: 2px solid var(--wa-purple);
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 0 0 3px rgba(130, 106, 157, 0.1);
+}
+
+.hokkaido-theme .timeline-item.highlight .timeline-dot {
+  background: #ef4444;
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.hokkaido-theme .highlight-badge {
+  background: #fee2e2;
+  color: #ef4444;
+  font-size: 9px;
+  font-weight: bold;
+  padding: 1px 6px;
+  border-radius: 8px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.hokkaido-theme .info-badge {
+  @apply flex items-center gap-2 bg-white/60 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/60 text-xs text-stone-700;
+}
+
+.hokkaido-theme .accommodation-note {
+  background: #fdfcf7;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+  margin: 32px -32px -32px -32px;
+  padding: 16px 32px;
+  border-radius: 0 0 28px 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hokkaido-theme .rental-card {
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px dashed var(--wa-tape);
+  border-radius: 24px;
+  padding: 20px;
+  position: relative;
+}
+
+/* --- Tokyo Scoped Theme --- */
+.tokyo-theme {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+.tokyo-theme .font-serif {
+  font-family: 'Outfit', 'Noto Serif JP', serif;
+}
+
+.tokyo-theme .font-sans {
+  font-family: 'Work Sans', 'Noto Sans TC', sans-serif;
+}
