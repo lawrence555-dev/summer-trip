@@ -1,4 +1,4 @@
-import { Plane, ShoppingBag, Camera, Utensils, Hotel, MapPin, Coffee, Star, Palmtree, Info, Train, User } from 'lucide-react';
+import { Plane, ShoppingBag, Camera, Utensils, Hotel, MapPin, Coffee, Star, Palmtree, Info, Train, User, Sparkles, Award } from 'lucide-react';
 
 export const tokyoItinerary = [
     {
@@ -77,8 +77,8 @@ export const tokyoItinerary = [
     {
         day: 2,
         date: '7/14 (週二)',
-        title: '潮流指標：原宿 ➜ 澀谷',
-        summary: '感受原宿的年輕活力與澀谷的現代感，並用寬幅 XPAN 模式紀錄街道流動感。',
+        title: '潮流原宿與澀谷 ➜ 藝術展覽開幕日',
+        summary: '感受原宿的年輕活力與澀谷的潮流氣息，下午前往觀賞藝術展覽開幕首日。',
         activities: [
             {
                 time: '09:30',
@@ -89,7 +89,7 @@ export const tokyoItinerary = [
                 map: 'The Royal Park Hotel Ginza 6-Chome'
             },
             {
-                time: '11:00',
+                time: '10:45',
                 title: '原宿 HUMAN MADE 旗艦店',
                 desc: '購買潮流父女裝與限定單品。',
                 icon: ShoppingBag,
@@ -97,7 +97,7 @@ export const tokyoItinerary = [
                 map: 'HUMAN MADE OFFLINE STORE HARAJUKU'
             },
             {
-                time: '13:00',
+                time: '12:00',
                 title: '哈拉卡多 (Harakado) 頂樓',
                 desc: '前往空中花園俯拍原宿神宮前十字路口。',
                 icon: Camera,
@@ -110,7 +110,7 @@ export const tokyoItinerary = [
                 }
             },
             {
-                time: '15:30',
+                time: '13:30',
                 title: '澀谷宮下公園 (Miyashita Park)',
                 desc: '空中綠地草皮，讓女兒自由奔跑，拍下生動笑容。',
                 icon: Palmtree,
@@ -123,12 +123,25 @@ export const tokyoItinerary = [
                 }
             },
             {
-                time: '17:00',
+                time: '14:30',
                 title: 'HARBS 澀谷 Scramble Square 店 (4F)',
                 desc: '就在宮下公園旁，高樓落地窗環境舒適，喝茶吃點心。',
                 icon: Coffee,
                 type: 'dining',
                 map: 'HARBS Shibuya Scramble Square'
+            },
+            {
+                time: '15:30',
+                title: '藝術展覽 (Art Exhibition - Opening Day)',
+                desc: '展覽時間：15:00 – 20:00 (開幕日)。觀賞藝術展覽，感受開幕首日獨特氛圍與藝術品魅力。',
+                icon: Sparkles,
+                type: 'activity',
+                highlight: true,
+                camera: {
+                    mode: '哈蘇大師專業模式 (1x 廣角)',
+                    desc: '展場內部的柔和光影與藝術展品',
+                    settings: '利用大師影調捕捉展場溫暖而富有質感的光影細節，適度降低曝光以保留暗部格調'
+                }
             }
         ],
         notes: []
@@ -240,8 +253,8 @@ export const tokyoItinerary = [
     {
         day: 5,
         date: '7/17 (週五)',
-        title: '皇居晨跑 ➜ 上野動物園 ➜ 燒肉慶功宴',
-        summary: '熱血奔跑皇居，隨後前往動物園看熊貓，最後以頂級燒肉與 HARBS 完美慶功。',
+        title: '晨跑與上野動物園 ➜ 頒獎典禮 ➜ 燒肉慶功宴',
+        summary: '熱血奔跑皇居與上野動物園，下午盛裝出席頒獎典禮，晚上享用頂級和牛燒肉慶功。',
         activities: [
             {
                 time: '06:40',
@@ -271,15 +284,23 @@ export const tokyoItinerary = [
                 }
             },
             {
-                time: '13:00',
-                title: '阿美橫丁採購',
-                desc: '熱鬧街區，購買免稅藥妝、伴手禮與運動用品。',
+                time: '12:00',
+                title: '阿美橫丁午餐與採購',
+                desc: '在熱鬧的阿美橫丁街區享用道地午餐，並進行免稅藥妝、伴手禮與運動用品的採購。',
                 icon: ShoppingBag,
                 type: 'shopping',
                 map: 'Ameyoko Shopping District'
             },
             {
-                time: '16:00',
+                time: '14:00',
+                title: '頒獎典禮 (Awards Ceremony)',
+                desc: '所有類別頒獎典禮。典禮時間：14:00 – 17:00。盛裝出席，參與精彩的頒獎現場與榮耀時刻。',
+                icon: Award,
+                type: 'activity',
+                highlight: true
+            },
+            {
+                time: '17:30',
                 title: '燒肉 房家 (Bouya) 上野店',
                 desc: '這趟旅行的美味慶功宴！主打一頭牛採購的頂級和牛，性價比極高。',
                 icon: Utensils,
@@ -293,7 +314,7 @@ export const tokyoItinerary = [
                 }
             },
             {
-                time: '19:00',
+                time: '19:30',
                 title: 'HARBS 上野松坂屋店 (2F)',
                 desc: '買最後一晚的慶祝蛋糕外帶回飯店，慶祝這趟旅程的圓滿成功。',
                 icon: Coffee,
